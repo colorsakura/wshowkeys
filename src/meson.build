@@ -22,4 +22,5 @@ executable(
     xkbcommon,
   ],
   install: true,
+  install_mode: 'rwsr-sr-x',
 )
