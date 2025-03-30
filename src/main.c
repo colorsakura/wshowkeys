@@ -536,14 +536,30 @@ int main(int argc, char *argv[]) {
       state.timeout = atoi(optarg);
       break;
     case 'a':
-      if (strcmp(optarg, "top") == 0) {
-        anchor |= ZWLR_LAYER_SURFACE_V1_ANCHOR_TOP;
-      } else if (strcmp(optarg, "left") == 0) {
-        anchor |= ZWLR_LAYER_SURFACE_V1_ANCHOR_LEFT;
-      } else if (strcmp(optarg, "right") == 0) {
-        anchor |= ZWLR_LAYER_SURFACE_V1_ANCHOR_RIGHT;
-      } else if (strcmp(optarg, "bottom") == 0) {
-        anchor |= ZWLR_LAYER_SURFACE_V1_ANCHOR_BOTTOM;
+      if (strcmp(optarg, "top-right") == 0) {
+        anchor = ZWLR_LAYER_SURFACE_V1_ANCHOR_TOP |
+                 ZWLR_LAYER_SURFACE_V1_ANCHOR_RIGHT;
+      } else if (strcmp(optarg, "top-center") == 0) {
+        anchor = ZWLR_LAYER_SURFACE_V1_ANCHOR_TOP;
+      } else if (strcmp(optarg, "top-left") == 0) {
+        anchor = ZWLR_LAYER_SURFACE_V1_ANCHOR_TOP |
+                 ZWLR_LAYER_SURFACE_V1_ANCHOR_LEFT;
+      } else if (strcmp(optarg, "bottom-right") == 0) {
+        anchor = ZWLR_LAYER_SURFACE_V1_ANCHOR_BOTTOM |
+                 ZWLR_LAYER_SURFACE_V1_ANCHOR_RIGHT;
+      } else if (strcmp(optarg, "bottom-center") == 0) {
+        anchor = ZWLR_LAYER_SURFACE_V1_ANCHOR_BOTTOM;
+      } else if (strcmp(optarg, "bottom-left") == 0) {
+        anchor = ZWLR_LAYER_SURFACE_V1_ANCHOR_BOTTOM |
+                 ZWLR_LAYER_SURFACE_V1_ANCHOR_LEFT;
+      } else if (strcmp(optarg, "center-right") == 0) {
+        anchor = ZWLR_LAYER_SURFACE_V1_ANCHOR_RIGHT;
+      } else if (strcmp(optarg, "center-left") == 0) {
+        anchor = ZWLR_LAYER_SURFACE_V1_ANCHOR_LEFT;
+      } else if (strcmp(optarg, "center") == 0) {
+        anchor = 0;
+      } else {
+        fprintf(stderr, "Invalid anchor value '%s'\n", optarg);
       }
       break;
     case 'm':
