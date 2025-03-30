@@ -59,3 +59,25 @@ rt = cc.find_library('rt')
 
 subdir('protocols')
 subdir('src')
+
+sk_deps = [
+    cairo,
+    client_protos,
+    libinput,
+    pango,
+    pangocairo,
+    rt,
+    udev,
+    wayland_client,
+    wayland_protos,
+    xkbcommon,
+]
+
+executable(
+  'wshowkeys',
+  sk_src,
+  include_directories: sk_inc,
+  dependencies: sk_deps,
+  install: true,
+  install_mode: 'rwsr-sr-x',
+)
